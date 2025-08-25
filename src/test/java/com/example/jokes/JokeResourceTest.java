@@ -21,16 +21,17 @@ class JokeResourceTest {
 	ChuckApi chuckApi;
 
 	@Test
-	void randomJoke_returnsJson(){
-		when(chuckApi.random()).thenReturn(new Joke("abc123", "Roundhouse kicks fix everything"));
+	void randomJoke_usesDefaultCategory_whenEnabled() {
+		when(chuckApi.randomByCategory("dev"))
+				.thenReturn(new Joke("dev999", "Chuck Norris writes bug-free code."));
 
 		given()
-				.when().get("hello/joke")
+				.when().get("/hello/joke")
 				.then()
 				.statusCode(200)
 				.contentType(ContentType.JSON)
-				.body("id", is("abc123"))
-				.and().body("value", is("Roundhouse kicks fix everything"));
+				.body("id", is("dev999"))
+				.body("value", is("Chuck Norris writes bug-free code."));
 	}
 
 	@Test

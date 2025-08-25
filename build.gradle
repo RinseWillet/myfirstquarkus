@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'io.quarkus' version '3.25.4'   // <-- must be literal here
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation enforcedPlatform("io.quarkus.platform:quarkus-bom:3.25.4")
+
+    implementation "io.quarkus:quarkus-arc"
+    implementation "io.quarkus:quarkus-rest"          // REST server (RESTEasy Reactive)
+    implementation "io.quarkus:quarkus-rest-client"   // REST client (new name)
+    implementation "io.quarkus:quarkus-rest-jackson"       // JSON mapping
+    implementation "io.quarkus:quarkus-rest-client-jackson"
+
+    testImplementation "io.quarkus:quarkus-junit5-mockito"
+    testImplementation "io.rest-assured:rest-assured"
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(21) }
+}
+
+tasks.withType(Test).configureEach {
+    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}

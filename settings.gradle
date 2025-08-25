@@ -1,0 +1,15 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+        mavenLocal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+}
+rootProject.name = "myFirstQuarkus"

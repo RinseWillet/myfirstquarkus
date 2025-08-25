@@ -2,6 +2,22 @@
 .gradle/
 build/
 
+# Java
+*.class
+*.log
+*.hprof
+hs_err_pid*
+replay_pid*
+
+# Quarkus
+target/
+.quarkus/
+
+# Packaging
+*.jar
+*.war
+*.ear
+
 # Eclipse
 .project
 .classpath
